@@ -3,6 +3,7 @@ const cutsceneContainer = document.getElementById('cutscene-container');
 const gameContainer = document.getElementById('game-container');
 const startBtn = document.getElementById('start-btn');
 const gameTitle = document.getElementById('game-title');
+const tickerBox = document.getElementById('ticker-box');
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const posInterface = document.getElementById('pos-interface');
@@ -36,6 +37,7 @@ startBtn.addEventListener('click', () => {
 
     startBtn.style.display = 'none';
     gameTitle.style.display = 'none'; // Hide title when video starts
+    tickerBox.style.display = 'none'; // Hide ticker
     cutsceneContainer.style.background = 'black'; // Remove background image
     video.style.display = 'block'; // Show video
     video.play().catch(e => {
@@ -277,6 +279,7 @@ btnPlayAgain.addEventListener('click', () => {
     
     startBtn.style.display = 'block';
     gameTitle.style.display = 'block';
+    tickerBox.style.display = 'block'; // Show ticker
     video.style.display = 'none';
     video.currentTime = 0;
 });
