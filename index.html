@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9-5 Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="cutscene-container">
+        <h1 id="game-title">
+            <span class="mcd-text">9-5 SI</span>
+            <svg class="mcd-logo-svg" viewBox="0 0 125 100" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#FFC72C" d="M 57.5 100 L 57.5 65 C 57.5 35 45 20 30 20 C 15 20 10 50 10 100 L 0 100 C 0 30 15 0 35 0 C 50 0 60 15 62.5 30 C 65 15 75 0 90 0 C 110 0 125 30 125 100 L 115 100 C 115 50 110 20 95 20 C 80 20 67.5 35 67.5 65 L 67.5 100 L 57.5 100 Z"/>
+            </svg>
+            <span class="mcd-text">ULATOR</span>
+        </h1>
+        <video id="intro-video">
+            <source src="1123.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button id="start-btn">PLAY 9-5 SIMULATOR</button>
+    </div>
+
+    <div id="video-overlay" style="display: none;">
+        <video id="gameplay-video">
+            <source src="Video Project.mp4" type="video/mp4">
+        </video>
+        <video id="fries-video" style="display: none;">
+            <source src="Screen Recording 2025-11-23 163649.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div id="refuse-overlay" style="display: none;">
+        <video id="refuse-video">
+            <source src="1123 (1).mp4" type="video/mp4">
+        </video>
+        <audio id="accept-audio">
+            <source src="Screen Recording 2025-11-23 165814.mp4" type="video/mp4">
+        </audio>
+        <div id="refuse-buttons" style="display: none;">
+            <button id="btn-accept-refuse" class="pos-btn take">ACCEPT</button>
+            <button id="btn-decline-refuse" class="pos-btn refuse">DECLINE</button>
+        </div>
+    </div>
+
+    <div id="fries-refuse-overlay" style="display: none;">
+        <video id="fries-refuse-video">
+            <source src="Screen Recording 2025-11-23 172806.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div id="decline-overlay" style="display: none;">
+        <video id="decline-video">
+            <source src="Video Project 3.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div id="end-screen" style="display: none;">
+        <h1 class="end-title">BETA COMPLETED!</h1>
+        <p class="end-message">The developer will begin making more only after 9-5 coin migrates.</p>
+        <button id="btn-play-again">PLAY AGAIN</button>
+    </div>
+
+    <div id="game-container" style="display: none;">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <div id="ui-layer">
+            <div id="pos-interface" style="display: none;">
+                <div class="order-box">
+                    <h2 class="order-text">2 Big Macs</h2>
+                </div>
+                <div class="button-row">
+                    <button id="btn-take" class="pos-btn take">Take Order</button>
+                    <button id="btn-refuse" class="pos-btn refuse">Refuse Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

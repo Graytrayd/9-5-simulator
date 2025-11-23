@@ -1,0 +1,312 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#cutscene-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: black url('Screenshot 2025-11-23 154639.png') no-repeat center center;
+    background-size: cover;
+    z-index: 10;
+}
+
+#video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 30; /* Higher than everything else */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameplay-video, #fries-video {
+    display: none; /* Hidden by default, shown via JS */
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#game-title {
+    position: absolute;
+    top: 15%;
+    font-family: 'Fredoka One', cursive;
+    font-size: 80px;
+    z-index: 20;
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    pointer-events: none; /* Let clicks pass through to video if needed */
+}
+
+.mcd-text {
+    color: #DA291C; /* McDonald's Red */
+    text-shadow: 
+        3px 3px 0px #FFC72C, /* Yellow Shadow */
+        -1px -1px 0 #FFC72C,  
+        1px -1px 0 #FFC72C,
+        -1px 1px 0 #FFC72C,
+        1px 1px 0 #FFC72C;
+}
+
+.mcd-logo-svg {
+    height: 0.8em; /* Scale relative to font size */
+    width: auto;
+    display: inline-block;
+    vertical-align: bottom; /* Align with text baseline */
+    margin: 0 5px;
+    filter: drop-shadow(3px 3px 0px #DA291C); /* Red Shadow for the SVG */
+    transform: translateY(5px);
+}
+
+video {
+    max-width: 100%;
+    max-height: 100%;
+    display: none; /* Hidden initially until play is clicked */
+}
+
+#start-btn {
+    position: absolute;
+    bottom: 20%;
+    padding: 15px 30px;
+    font-size: 24px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 0 0 10px #ff0000;
+    transition: all 0.2s;
+}
+
+#start-btn:hover {
+    background: #ff0000;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #ff0000;
+}
+
+/* Game UI Styles */
+#game-container {
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+}
+
+#ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#pos-interface {
+    pointer-events: auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.order-box {
+    background: #f0f0f0;
+    border: 4px solid #333;
+    padding: 20px 40px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 0 rgba(0,0,0,0.2);
+    transform: rotate(-2deg);
+}
+
+.order-text {
+    color: purple;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 48px;
+    margin: 0;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+.button-row {
+    display: flex;
+    gap: 20px;
+}
+
+.pos-btn {
+    padding: 15px 30px;
+    font-size: 24px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: transform 0.1s;
+    box-shadow: 0 5px 0 rgba(0,0,0,0.3);
+}
+
+.pos-btn:active {
+    transform: translateY(5px);
+    box-shadow: none;
+}
+
+.pos-btn.take {
+    background-color: #2ecc71; /* Green */
+    color: white;
+}
+
+.pos-btn.refuse {
+    background-color: #e74c3c; /* Red */
+    color: white;
+}
+
+#refuse-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 30;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#refuse-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#decline-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 35; /* Higher than refuse overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#decline-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#refuse-buttons {
+    position: absolute;
+    bottom: 20%;
+    display: flex;
+    gap: 50px;
+    z-index: 40;
+}
+
+#fries-refuse-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 35;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#fries-refuse-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#end-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #c0392b; /* McDonald's Red Background */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    text-align: center;
+    background-image: radial-gradient(circle, #e74c3c 10%, transparent 10%), radial-gradient(circle, #e74c3c 10%, transparent 10%);
+    background-size: 50px 50px;
+    background-position: 0 0, 25px 25px;
+}
+
+.end-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 80px;
+    color: #FFC72C; /* McDonald's Yellow */
+    text-shadow: 4px 4px 0 #a93226;
+    margin-bottom: 20px;
+}
+
+.end-message {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+    color: white;
+    max-width: 600px;
+    margin-bottom: 50px;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+#btn-play-again {
+    padding: 20px 40px;
+    font-size: 30px;
+    font-family: 'Fredoka One', cursive;
+    background: #FFC72C;
+    color: #c0392b;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 0 #d4ac0d;
+    transition: transform 0.1s;
+}
+
+#btn-play-again:active {
+    transform: translateY(5px);
+    box-shadow: 0 5px 0 #d4ac0d;
+}
